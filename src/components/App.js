@@ -1,6 +1,28 @@
-import React from 'react'
+import React, {useReducer} from 'react'
 import '../styles/App.css';
 const App = () => {
+  const initialTaskState = {count : 0};
+
+  const reducer = (state, action)=>{
+    switch(action.type){
+      case "add" :
+        return{
+          count : state.count + 1
+        }
+      case "delete" :
+        return{
+          count : state.count - 1
+        }
+      case "deleteAll" :
+        return{
+          count : 0
+        }
+      default :
+        return state;
+    }
+  }
+
+  const [taskState, dispatch] = useReducer(reducer, initialTaskState);
 
   return (
     <div id="main">
